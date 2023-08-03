@@ -1,0 +1,84 @@
+.settingsPage {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.pfp {
+    color: #68738d;
+    padding-left: 10px;
+}
+
+.pfpOptions {
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    gap: 30px;
+}
+
+.pfpOption {
+    border-radius: 50%;
+    margin-top: 10px;
+    width: 110px;
+    height: 110px;
+    border: 5px;
+}
+
+.pfpOption {
+    cursor: pointer;
+}
+
+.pfpOptionSelected {
+    border-radius: 50%;
+    margin-top: 10px;
+    width: 110px;
+    height: 110px;
+    border: 5px solid #1da1f2;
+}
+
+.banner {
+    width: 90%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.banner:hover {
+    cursor: pointer;
+}
+
+.save {
+    background-color: #1da1f2;
+    padding: 10px 20px;
+    border-radius: 1000px;
+    color: white;
+    font-weight: 600;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    margin-left: 80%;
+}
+
+.save:hover {
+    cursor: pointer;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #1da1f2;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+    margin-left: 80%;
+}
