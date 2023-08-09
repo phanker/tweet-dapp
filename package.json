@@ -1,5 +1,6 @@
 {
-    "name": "twitter-clone",
+    "homepage": "./",
+    "name": "twitter",
     "version": "0.1.0",
     "private": true,
     "dependencies": {

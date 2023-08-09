@@ -17,7 +17,7 @@ import { ethers } from "ethers"
 import { Chain, OpenSeaPort } from "opensea-js"
 config()
 const Settings = () => {
-    const { userInfo } = useContext(AccountContext)
+    const { userInfo, setRefreshUserInfo } = useContext(AccountContext)
 
     const [currentUser, setCurrentUser] = useState()
     const { Moralis, account, isWeb3Enabled, chainId: chainIdHex, web3 } = useMoralis()
@@ -128,9 +128,7 @@ const Settings = () => {
     const handleSuccess = async (tx) => {
         try {
             await tx.wait(1)
-            window.location.reload()
-            // updateUIValues()
-            // handleNewNotification(tx)
+            setRefreshUserInfo(true)
         } catch (error) {
             console.log(error)
         }
@@ -194,9 +192,7 @@ const Settings = () => {
         let nftJson = {}
         nftJson.address = nft.contract.address
         nftJson.tokenId = nft.id
-        console.log("nft,", nft.contract.address, nft.id)
         // const yourChoise = nfts[ImgIndex]
-        console.log(JSON.stringify(nftJson))
         setIdentifier(JSON.stringify(nftJson))
     }
 

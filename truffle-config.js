@@ -22,6 +22,8 @@ require("dotenv").config()
 
 const SEPOLIA_RPC_URL = process.env.REACT_APP_SEPOLIA_RPC_URL
 
+console.log("SEPOLIA_RPC_URL=", SEPOLIA_RPC_URL)
+
 const MUMBAI_RPC_URL = process.env.REACT_APP_MUMBAI_RPC_URL
 
 const HDWalletProvider = require("@truffle/hdwallet-provider")

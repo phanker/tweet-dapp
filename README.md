@@ -1,10 +1,4 @@
-### To get started:
+I have already depoly this dapp with Fleek on IPFS.
+The website you can access to (https://ipfs.io/ipfs/QmeqddrsVRvyY4o2fRELzQJDLnVxpgxk8R5MAQwGeMctUy).
 
-1. Install all dependencies
-    ```
-    yarn install
-    ```
-2. Run the react applicatoin.
-   `     yarn start
-    `
-   The applicaiton will start with http://localhost:3000/
+This project integracts a NFT project that its resource code you can access to (https://github.com/phanker/Dynamic-NTF)

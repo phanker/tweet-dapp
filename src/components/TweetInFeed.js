@@ -11,6 +11,7 @@ import { useMoralis, useWeb3Contract } from "react-moralis"
 import { config } from "dotenv"
 import { ethers } from "ethers"
 import { Chain, OpenSeaPort } from "opensea-js"
+import { AccountContext } from "../AccountContext"
 config()
 const TweetInFeed = (param1) => {
     const { Moralis, account, isWeb3Enabled, chainId: chainIdHex } = useMoralis()
@@ -90,6 +91,8 @@ const TweetInFeed = (param1) => {
         }
     }
 
+    const { refreshFeed, setRefreshFeed } = React.useContext(AccountContext)
+
     const options = {
         year: "numeric",
         month: "short",
@@ -100,15 +103,16 @@ const TweetInFeed = (param1) => {
         timeZoneName: "short",
     }
     React.useEffect(() => {
-        if (isWeb3Enabled) {
+        if (isWeb3Enabled || refreshFeed) {
             getTweetFunction()
+            setRefreshFeed(false)
             // 检查是否所有图片链接都已经获取到
             // const allImagesLoaded = tweets?.every((tweet) => !!srcImgs && !!srcImgs[tweet.account])
             // console.log(allImagesLoaded)
             // console.log(srcImgs)
             // setImageLoaded(allImagesLoaded) // 设置图片加载状态
         }
-    }, [isWeb3Enabled])
+    }, [isWeb3Enabled, refreshFeed])
 
     return (
         <>

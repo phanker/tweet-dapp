@@ -14,17 +14,17 @@ import { AlertCircle } from "feather-icons"
 config()
 
 const Home = () => {
-    const { userInfo } = React.useContext(AccountContext)
+    const { userInfo, setRefreshFeed } = React.useContext(AccountContext)
     const { Moralis, account, isWeb3Enabled, chainId: chainIdHex } = useMoralis()
     const chainId = parseInt(chainIdHex)
     const tweetAddress = chainId in contractAddresses ? contractAddresses[chainId][0] : null
-
     const inputFile = useRef(null)
     const [selectedFile, setSelectedFile] = useState()
     const [theFile, setTheFile] = useState()
     const [tweet, setTweet] = useState()
     const [ipfsHash, setIpfsHash] = useState()
     const [isUploading, setIsUploading] = useState(false)
+    const [tweetValue, setTweetValue] = useState(false)
 
     const onImageClick = () => {
         inputFile.current.click()
@@ -60,8 +60,14 @@ const Home = () => {
 
     const handleSuccess = async (tx) => {
         try {
+            setIpfsHash("")
+            setSelectedFile("")
+            setTweet("")
+
+            setTweetValue(!tweetValue)
+            console.log("tweet:", tweet)
             await tx.wait(1)
-            window.location.reload()
+            setRefreshFeed(true)
         } catch (error) {
             console.log(error)
         }
@@ -92,6 +98,12 @@ const Home = () => {
         }
     }
 
+    React.useEffect(() => {
+        console.log("tweet value changed:", tweet)
+        if (!tweet) {
+            setTweetValue(!tweetValue)
+        }
+    }, [tweet])
     const handleTweetClick = async () => {
         if (!tweet || tweet.trim() === "") {
             dispatch({
@@ -137,6 +149,8 @@ const Home = () => {
                             onBlur={function noRefCheck() {}}
                             type='text'
                             width='95%'
+                            key={tweetValue}
+                            value={tweet}
                             onChange={(e) => setTweet(e.target.value)}
                         ></TextArea>
                         {selectedFile && <img src={selectedFile} className='tweetImg'></img>}

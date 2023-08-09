@@ -45,7 +45,8 @@ const App = () => {
                 console.log("Null Account found")
             }
             window.localStorage.removeItem("user")
-            window.location.reload()
+            // window.location.href = window.location.href
+            // window.location.reload()
         })
     }, [])
 
@@ -117,9 +118,30 @@ const App = () => {
                         />
                     </div>
                 )
+            ) : account ? (
+                <div className='loginPage'>
+                    <h1>Only support Sepolia chain at present.</h1>
+                </div>
             ) : (
                 <div className='loginPage'>
-                    <h1>Please connect to a supported chain</h1>
+                    <Icon fill='#ffffff' size='40' svg='twitter' />
+                    {/* <ConnectButton moralisAuth={false} /> */}
+                    <Button
+                        text='Connect Wallet'
+                        size='regular'
+                        disabled={isWeb3EnableLoading}
+                        onClick={async () => {
+                            // await walletModal.connect()
+                            const ret = await enableWeb3()
+                            if (typeof ret !== "undefined") {
+                                // depends on what button they picked
+                                if (typeof window !== "undefined") {
+                                    window.localStorage.setItem("connected", "injected")
+                                    // window.localStorage.setItem("connected", "walletconnect")
+                                }
+                            }
+                        }}
+                    />
                 </div>
             )}
         </>

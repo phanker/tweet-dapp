@@ -15,7 +15,8 @@ import axios from "axios"
 config()
 
 const Sidebar = () => {
-    const { userInfo, setUserInfo } = useContext(AccountContext)
+    const { userInfo, setUserInfo, refreshUserInfo, setRefreshUserInfo } =
+        useContext(AccountContext)
     const { Moralis, account, isWeb3Enabled, chainId: chainIdHex } = useMoralis()
     const chainId = parseInt(chainIdHex)
     const tweetAddress = chainId in contractAddresses ? contractAddresses[chainId][0] : null
@@ -89,10 +90,11 @@ const Sidebar = () => {
     }
 
     React.useEffect(() => {
-        if (isWeb3Enabled) {
+        if (isWeb3Enabled || refreshUserInfo) {
+            setRefreshUserInfo(false)
             getUserFunction()
         }
-    }, [isWeb3Enabled])
+    }, [isWeb3Enabled, refreshUserInfo])
     // getUserFunction()
 
     return (
