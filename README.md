@@ -1,7 +1,8 @@
 # Tweet-dapp  
+## PROJECT DESCRIPTION
 The tweet-dapp is a totally decentralized app.We can post our tweets via it and our tweets will store in the blockchain of Etheruem.We can modify personal information via the tweet-dapp,of course the tweet-dapp use IPFS storing personal information.  
-The tweet-dapp is an earlier version.There are also many functionalities I need to complete for it. 
-The source code of tweet-dapp is in my GitHub. 
+The tweet-dapp is an earlier version.There are also many functionalities I need to complete for it.   
+The source code of tweet-dapp is in my GitHub.   
 
 ✅ Utilized the React to implement the function of the front end. 
 ✅ Used the programming language Solidity with Ethereum platform to implement smart contracts. 
